@@ -1,0 +1,25 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-added-large-files
+  - repo: https://github.com/koalaman/shellcheck
+    rev: v0.10.0
+    hooks:
+      - id: shellcheck
+        files: '\.sh$'
+  - repo: local
+    hooks:
+      - id: clang-format
+        name: clang-format
+        entry: clang-format -style=file -i
+        language: system
+        files: '\.(c|cpp|h|hpp|cxx|cc)$'
+      - id: clang-tidy
+        name: clang-tidy
+        entry: clang-tidy
+        language: system
+        types: [c, c++]
+
